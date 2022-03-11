@@ -6,24 +6,33 @@ import time
 def list_create():
     length = int(input("Введите длину массива: "))
     list_of_items = [randint(-500,500) for j in range(length)]
-    list_of_items.sort()
     print(list_of_items)
     return list_of_items
+
+
+def Print(mas, n):
+    for i in range(int(n)):
+        print(mas[i], end=' ')
+    print()
 
 
 def delete_element(list_of_items):
-    index = int(input("Введите индекс числа, которое хотите удалить: "))
-    del list_of_items[index]
-    print(list_of_items)
-    return list_of_items
+    print("Хотите удалить элемент? ")
+    ans = input()
+    if ans == "да" or ans == "Да":
+        index = int(input("Введите индекс: "))
+        del list_of_items[index]
+        Print(list_of_items, n - 1)
 
 
 def insert_element(list_of_items):
-    index = int(input("Введите индекс числа, на который хотите вставить число: "))
-    number = int(input("Введите число, которое хотите вставить: "))
-    list_of_items.insert(index, number)
-    print(list_of_items)
-    return list_of_items
+    print("Хотите внести элемент? ")
+    ans = input()
+    if ans == "да" or ans == "Да":
+        el = int(input("Введите число: "))
+        index = int(input("Введите индекс: "))
+        list_of_items.insert(index, el)
+        Print(list_of_items, n + 1)
 
 
 def binary_search(list_of_numbers, value):
@@ -41,6 +50,60 @@ def binary_search(list_of_numbers, value):
             else:
                 first = mid + 1
     return index
+
+
+class Node:
+
+    def __init__(self, data):
+
+        self.left = None
+        self.right = None
+        self.data = data
+
+    def insert(self, data):
+
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
+
+    def findval(self, lkpval):
+        if lkpval < self.data:
+            if self.left is None:
+                print(lkpval, "не найден.")
+                return False
+            return self.left.findval(lkpval)
+        elif lkpval > self.data:
+            if self.right is None:
+                print(lkpval, "не найден.")
+                return False
+            return self.right.findval(lkpval)
+        else:
+            print(self.data, ' найден.')
+            return True
+
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        print(self.data),
+        if self.right:
+            self.right.PrintTree()
+
+
+def make_a_tree(arr):
+    root = Node(arr[0])
+    for i in arr[1::]:
+        root.insert(i)
+    return root
 
 
 def fibonacci_search(list_of_items, value):
@@ -88,25 +151,57 @@ def main():
     print("Исходный список:")
     list_of_items = list_create()
     list_of_items_binary = copy.deepcopy(list_of_items)
+    list_of_items_binary.sort()
     print("Бинарный поиск: ")
     value = int(input("Введите элемент для поиска: "))
+    start_time_bin = time.time()
     print("Искомый элемент имеет индекс " + binary_search(list_of_items_binary, value))
+    end_time_bin = time.time() - start_time_bin
+    print("Время работы бинарного поиска: " + end_time_bin)
     insert_element(list_of_items_binary)
     delete_element(list_of_items_binary)
 
     list_of_items_fibonacci = copy.deepcopy(list_of_items)
+    list_of_items_fibonacci.sort()
     print("Фибоначчиев поиск: ")
     value = int(input("Введите элемент для поиска: "))
+    start_time_fib = time.time()
     print("Искомый элемент имеет индекс " + fibonacci_search(list_of_items_fibonacci, value))
+    end_time_fib = time.time() - start_time_fib
+    print("Время работы поиска Фибоначчи: " + end_time_fib)
     insert_element(list_of_items_fibonacci)
     delete_element(list_of_items_fibonacci)
 
     list_of_items_interpolation = copy.deepcopy(list_of_items)
+    list_of_items_interpolation.sort()
     print("Интерполяционный поиск: ")
     value = int(input("Введите элемент для поиска: "))
+    start_time_int = time.time()
     print("Искомый элемент имеет индекс " + interpolation_search(list_of_items_interpolation, value))
+    end_time_int = time.time() - start_time_int
+    print("Время работы интерполяционного поиска: " + end_time_int)
     insert_element(list_of_items_interpolation)
     delete_element(list_of_items_interpolation)
+
+    list_of_items_tree = copy.deepcopy(list_of_items)
+    root = make_a_tree(list_of_items_tree)
+    value = int(input("Введите элемент для поиска: "))
+    start_time_tree = time.time()
+    result = root.findval(value)
+    end_time_tree = time.time() - start_time_tree
+    print("Время работы поиска в бинарном дереве: " + end_time_tree)
+    ans = input("Хотите внести элемент? ")
+    if ans == "да" or ans == "Да":
+        val = int(input("Введите элемент, который хотите внести: "))
+        root.insert(val)
+        root.PrintTree()
+    ans = input("Хотите удалить элемент? ")
+    if ans == "да" or ans == "Да":
+        val = int(input("Введите элемент, который хотите удалить: "))
+        list_of_items_tree.remove(val)
+        root = make_a_tree(list_of_items_tree)
+        root.PrintTree()
+    print(end_time_tree)
 
 
 if __name__ == "__main__":
