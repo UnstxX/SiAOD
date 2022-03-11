@@ -152,34 +152,37 @@ def main():
     list_of_items = list_create()
     list_of_items_binary = copy.deepcopy(list_of_items)
     list_of_items_binary.sort()
+    print(list_of_items_binary)
     print("Бинарный поиск: ")
     value = int(input("Введите элемент для поиска: "))
     start_time_bin = time.time()
-    print("Искомый элемент имеет индекс " + binary_search(list_of_items_binary, value))
+    print(f"Искомый элемент имеет индекс {binary_search(list_of_items_binary, value)}")
     end_time_bin = time.time() - start_time_bin
-    print("Время работы бинарного поиска: " + end_time_bin)
+    print(f"Время работы бинарного поиска: {end_time_bin}")
     insert_element(list_of_items_binary)
     delete_element(list_of_items_binary)
 
     list_of_items_fibonacci = copy.deepcopy(list_of_items)
     list_of_items_fibonacci.sort()
+    print(list_of_items_fibonacci)
     print("Фибоначчиев поиск: ")
     value = int(input("Введите элемент для поиска: "))
     start_time_fib = time.time()
-    print("Искомый элемент имеет индекс " + fibonacci_search(list_of_items_fibonacci, value))
+    print(f"Искомый элемент имеет индекс {fibonacci_search(list_of_items_fibonacci, value)}")
     end_time_fib = time.time() - start_time_fib
-    print("Время работы поиска Фибоначчи: " + end_time_fib)
+    print(f"Время работы поиска Фибоначчи: {end_time_fib}")
     insert_element(list_of_items_fibonacci)
     delete_element(list_of_items_fibonacci)
 
     list_of_items_interpolation = copy.deepcopy(list_of_items)
     list_of_items_interpolation.sort()
+    print(list_of_items_interpolation)
     print("Интерполяционный поиск: ")
     value = int(input("Введите элемент для поиска: "))
     start_time_int = time.time()
-    print("Искомый элемент имеет индекс " + interpolation_search(list_of_items_interpolation, value))
+    print(f"Искомый элемент имеет индекс {interpolation_search(list_of_items_interpolation, value)}")
     end_time_int = time.time() - start_time_int
-    print("Время работы интерполяционного поиска: " + end_time_int)
+    print(f"Время работы интерполяционного поиска: {end_time_int}")
     insert_element(list_of_items_interpolation)
     delete_element(list_of_items_interpolation)
 
@@ -189,7 +192,7 @@ def main():
     start_time_tree = time.time()
     result = root.findval(value)
     end_time_tree = time.time() - start_time_tree
-    print("Время работы поиска в бинарном дереве: " + end_time_tree)
+    print(f"Время работы поиска в бинарном дереве: {end_time_tree}")
     ans = input("Хотите внести элемент? ")
     if ans == "да" or ans == "Да":
         val = int(input("Введите элемент, который хотите внести: "))

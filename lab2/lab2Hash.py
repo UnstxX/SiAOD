@@ -1,7 +1,7 @@
 import random
 
 
-#генерация
+# генерация
 def generate_array(length=100):  # генерируем случайный массив
     array = []
     while len(array) < length:
@@ -9,7 +9,7 @@ def generate_array(length=100):  # генерируем случайный ма�
     return array
 
 
-#для хэша
+# для хэша
 class ClassForRehash:
     def __init__(self, value1):
         self.value1 = value1
@@ -49,13 +49,13 @@ class SimpleRehashTable:
         return
 
 
-#вывод
+# вывод
 simple_re = SimpleRehashTable(ClassForRehash.MAX_HASH_TABLE)
 for i in range(len(simple_re.table) + 2):
     simple_re.add_el(ClassForRehash(random.randint(0, 8)))
 
 
-#случайное рехеширование
+# случайное рехеширование
 class RandomRehashTable:
 
     def __init__(self, length):
@@ -85,12 +85,13 @@ class RandomRehashTable:
         return
 
 
-#вывод
+# вывод
 random_re = RandomRehashTable(ClassForRehash.MAX_HASH_TABLE)
 for i in range(len(random_re.table) + 2):
     random_re.add_el(ClassForRehash(random.randint(0, 9)))
 
-#метод цепочек
+
+# метод цепочек
 class ChainRehashTable:
 
     def __init__(self, length):
