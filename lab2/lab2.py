@@ -9,9 +9,9 @@ def list_create():
     return list_of_items
 
 
-def Print(mas, n):
+def Print(array, n):
     for i in range(int(n)):
-        print(mas[i], end=' ')
+        print(array[i], end=' ')
     print()
 
 
