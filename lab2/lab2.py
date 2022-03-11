@@ -4,8 +4,7 @@ import time
 
 
 def list_create():
-    length = int(input("Введите длину массива: "))
-    list_of_items = [randint(-500,500) for j in range(length)]
+    list_of_items = [randint(-500, 500) for j in range(n)]
     print(list_of_items)
     return list_of_items
 
@@ -145,6 +144,9 @@ def interpolation_search(list_of_items, value):
         else:
             high = index - 1
     return -1
+
+
+n = int(input("Введите длину массива: "))
 
 
 def main():
