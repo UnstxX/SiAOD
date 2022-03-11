@@ -99,7 +99,6 @@ class ChainRehashTable:
     def add_el(self, element):
         # метод цепочек
         original_hash = element.hashh
-        print(element.hashh)
         if self.table[original_hash] is None:
             self.table[original_hash] = [element]
             return
